@@ -47,14 +47,14 @@ class Student{
     Student(String name , int rollNo){
         this.name = name;
         this.rollNo = rollNo;
-        course = "your choice";
+        this.course = "your choice";
     }
 
     //constructor with only name
     Student(String name){
         this.name = name;
-        rollNo = 0;
-        course = "your choice";
+        this.rollNo = 0;
+        this.course = "your choice";
     }
 
     //displayDetails method
