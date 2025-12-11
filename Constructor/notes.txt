@@ -1,0 +1,38 @@
+🎯 Interview Questions on Constructor Overloading
+
+❓ Q1: Can constructor overloading happen in Java?
+
+✔ Yes, by changing number/type/order of parameters.
+
+❓ Q2: Does constructor have a return type?
+
+✔ No.
+
+❓ Q3: Can we overload default constructor?
+
+✔ Yes.
+
+❓ Q4: Can constructors call each other?
+
+✔ Yes, using this().
+
+
+
+--template 2 question :
+
+Create a class Student with:
+
+Properties:
+
+--name
+--rollNo
+--course
+
+Create 3 overloaded constructors:
+
+--One with all 3 values
+--One with name and rollNo
+--One with only name
+
+Method: displayDetails()
+Create 3 objects using different constructor
