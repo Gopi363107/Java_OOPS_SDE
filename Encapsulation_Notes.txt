@@ -1,0 +1,173 @@
+✅ 1. What is Encapsulation?
+
+Encapsulation = Wrapping data (variables) and methods together + hiding data
+
+In simple words:
+
+Protect your data from outside misuse
+
+Real-world example:
+
+Bank ATM
+
+You cannot directly access balance
+
+You use deposit() / withdraw() methods
+
+That is encapsulation.
+
+✅ 2. How Encapsulation is Achieved in Java?
+
+Using:
+
+private variables
+
+public getters & setters
+
+❌ Without Encapsulation (Bad Practice)
+class Employee {
+    public double salary;
+}
+
+
+Anyone can do:
+
+emp.salary = -50000; // ❌ wrong
+
+✅ With Encapsulation (Correct Practice)
+class Employee {
+
+    private double salary;  // data hiding
+
+    public void setSalary(double salary) {
+        if (salary > 0) {
+            this.salary = salary;
+        }
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+}
+
+
+Now:
+
+Salary cannot be negative
+
+Data is protected
+
+Logic is controlled
+
+🔑 3. Why Encapsulation is IMPORTANT for MNCs?
+
+Interviewers expect:
+
+Security
+
+Maintainability
+
+Controlled access
+
+Loose coupling
+
+Encapsulation gives all of this.
+
+⭐ 4. Getters and Setters Explained
+Getter → read data
+Setter → modify data
+Syntax pattern (must remember):
+public datatype getVariableName() {
+    return variableName;
+}
+
+public void setVariableName(datatype value) {
+    this.variableName = value;
+}
+
+⭐ 5. Example (BankAccount with Encapsulation)
+class BankAccount {
+
+    private String name;
+    private double balance;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+}
+
+
+✔ Notice:
+
+balance is private
+
+No direct access
+
+Business rules enforced
+
+🔥 6. Encapsulation vs Abstraction (INTERVIEW QUESTION)
+
+Feature	            Encapsulation	                        Abstraction
+
+Focus	            Data protection	                    Hiding implementation
+How	            private + getters/setters	           abstract class / interface
+Level	            Implementation	                            Design
+
+❓ 7. Common Interview Questions
+
+Q1. Is encapsulation mandatory in Java?
+
+❌ No, but best practice.
+
+Q2. Can encapsulation exist without getters/setters?
+
+✔ Yes (methods like deposit/withdraw also encapsulate logic).
+
+Q3. Is encapsulation related to inheritance?
+
+❌ No, it is independent.
+
+🧠 8. You already USED Encapsulation!
+
+Your previous codes:
+
+private variables
+
+public methods
+
+controlled acces
+
+🧠 Interview Questions You Can Answer Now
+❓ What is encapsulation?
+
+Wrapping data and methods together and restricting direct access using private variables and controlled access through methods.
+
+❓ Why use getters & setters?
+
+To control access, apply validation, and protect internal object state.
+
+❓ Is encapsulation only getters/setters?
+
+No. Any controlled access method like deposit() or withdraw() also provides encapsulation.
