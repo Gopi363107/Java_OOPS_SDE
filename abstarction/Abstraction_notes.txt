@@ -66,3 +66,20 @@ All methods are abstract (by default)
 Variables are public static final
 Supports multiple inheritance
 
+
+Abstract Class vs Interface (VERY IMPORTANT)
+
+Feature	                Abstract Class	        Interface
+Methods	              Abstract + Concrete	    Only Abstract
+Variables	               Any type	        public static final
+Multiple Inheritance	    ❌ No	            ✅ Yes
+Constructor             	✅ Yes	            ❌ No
+Access Modifiers	    Allowed	            Methods are public
+
+Interview One-Liner (Very Powerful)
+
+Encapsulation protects data, abstraction hides complexity, inheritance reuses code, and polymorphism makes code flexible.
+
+❓ Why abstract methods should not take object identity as parameter?
+
+Because abstraction relies on polymorphism, where behavior is decided by the object type at runtime, not by passing explicit identifiers.
