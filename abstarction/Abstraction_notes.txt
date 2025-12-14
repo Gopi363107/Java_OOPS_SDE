@@ -33,3 +33,36 @@ abstract class ClassName {
     abstract void method1(); // no body
     void method2() { }        // with body
 }
+
+
+abstract void withdraw();
+✔ No body
+✔ Must be implemented by child class
+✔ Forces subclasses to follow rules
+
+Why This Is Abstraction?
+
+-User interacts with Bank
+
+-Implementation hidden inside SBI
+
+-Can switch to ICICI, HDFC without changing user code
+
+❓ Interview Questions (Abstract Class)
+Q1. Can abstract class have constructor?
+✔ YES
+
+Q2. Can abstract class have non-abstract methods?
+✔ YES
+
+Q3. Can we create object of abstract class?
+❌ NO
+
+
+🔹 6. What is an Interface?
+
+An interface is a 100% abstraction blueprint.
+All methods are abstract (by default)
+Variables are public static final
+Supports multiple inheritance
+
