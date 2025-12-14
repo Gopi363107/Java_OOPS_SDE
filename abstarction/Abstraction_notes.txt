@@ -1,0 +1,35 @@
+✅ 1. What is Abstraction?
+
+Abstraction = Hiding implementation details and showing only what is necessary
+
+Simple definition:
+What an object does is shown, how it does is hidden.
+
+🌍 Real-World Example
+
+ATM Machine
+
+-You see → withdraw(), deposit(), checkBalance()
+-You don’t see → bank server logic, encryption, database code
+That is abstraction.
+
+✅ 2. How Abstraction is Achieved in Java?
+
+Java provides two ways:
+
+ - Abstract Class
+ - Interface
+
+🔹 3. What is an Abstract Class?
+
+An abstract class:
+
+~Can have abstract methods (without body)
+~Can have concrete methods (with body)
+~Cannot be instantiated (no object creation)
+
+Syntax
+abstract class ClassName {
+    abstract void method1(); // no body
+    void method2() { }        // with body
+}
