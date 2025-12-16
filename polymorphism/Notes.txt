@@ -1,0 +1,138 @@
+POLYMORPHISM IN JAVA (FROM ZERO → INTERVIEW LEVEL)
+
+Polymorphism = One name, many forms
+
+In Java, polymorphism happens in two ways:
+
+1️⃣ Compile-time Polymorphism
+2️⃣ Runtime Polymorphism
+
+1️⃣ COMPILE-TIME POLYMORPHISM (Method Overloading)
+👉 Happens at compile time
+👉 Same method name, different parameter list
+Example:
+class Calculator {
+
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    double add(double a, double b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+
+        System.out.println(c.add(10, 20));
+        System.out.println(c.add(10.5, 20.5));
+        System.out.println(c.add(1, 2, 3));
+    }
+}
+
+✔ Decided at compile time
+❌ No inheritance required
+2️⃣ RULES OF METHOD OVERLOADING (VERY IMPORTANT)
+
+✔ Same class
+✔ Same method name
+✔ Different number / type / order of parameters
+
+❌ Return type alone cannot change
+
+int add(int a, int b)
+double add(int a, int b) // ❌ ERROR
+
+3️⃣ RUNTIME POLYMORPHISM (Method Overriding) ⭐⭐⭐
+👉 Happens at runtime
+👉 Requires inheritance
+👉 Parent reference → Child object
+Example:
+class Vehicle {
+    void start() {
+        System.out.println("Vehicle is starting");
+    }
+}
+
+class Car extends Vehicle {
+    @Override
+    void start() {
+        System.out.println("Car starts with key");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Vehicle v = new Car(); // polymorphism
+        v.start();  // Car's method is called
+    }
+}
+
+4️⃣ WHY RUNTIME POLYMORPHISM IS IMPORTANT?
+
+Because:
+
+Method call depends on object, not reference
+
+Vehicle v = new Car();
+
+
+✔ Reference → Vehicle
+✔ Object → Car
+✔ Method executed → Car’s start()
+
+5️⃣ METHOD OVERRIDING RULES (VERY IMPORTANT)
+
+✔ Same method signature
+✔ Same return type (or covariant)
+✔ Access level cannot be reduced
+✔ @Override annotation recommended
+✔ Cannot override static, final, private
+
+6️⃣ Compile-Time vs Runtime Polymorphism
+
+Feature	            Compile-Time	            Runtime
+
+Example	            Overloading	                Overriding
+Decision	        Compile time	            Runtime
+Inheritance	        ❌ Not needed	        ✅ Required
+Flexibility	            Less	                    More
+MNC Focus	            Medium	                  🔥 HIGH
+
+7️⃣ INTERVIEW TRICK QUESTION ⚠️
+Vehicle v = new Vehicle();
+v.start();   // Vehicle method
+
+Vehicle v2 = new Car();
+v2.start();  // Car method
+
+
+👉 Same reference type
+👉 Different output
+👉 Runtime polymorphism
+
+8️⃣ REAL-WORLD EXAMPLE (BEST ANSWER)
+
+A person can behave differently:
+
+Employee at office
+
+Customer in shop
+
+Parent at home
+Same person, different behavior → polymorphism
+
+🧪 PRACTICE TASK (DO THIS NEXT)
+/* Create a class Shape with method draw()
+   Create subclasses:
+      Circle
+      Rectangle
+   Override draw()
+   Call using Shape reference */
