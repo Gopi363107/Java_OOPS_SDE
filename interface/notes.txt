@@ -1,0 +1,164 @@
+🔥 INTERFACES IN JAVA (FROM SCRATCH → ADVANCED)
+
+Almost every MNC Java interview asks this
+
+1️⃣ What is an Interface?
+
+An interface is a 100% abstraction blueprint.
+
+It tells WHAT to do, not HOW to do.
+
+interface Vehicle {
+    void start();
+}
+
+
+✔ No object creation
+✔ No constructor
+✔ No method body (before Java 8)
+
+2️⃣ Why Interface? (VERY IMPORTANT QUESTION)
+
+Java does NOT support multiple inheritance using classes.
+
+❌ This is illegal:
+
+class A {}
+class B {}
+class C extends A, B {} // ❌
+
+
+✅ Interface solves this:
+
+class C implements A, B {}
+
+
+👉 Main reason: MULTIPLE INHERITANCE
+
+3️⃣ Basic Interface Example
+interface Vehicle {
+    void start();
+}
+
+class Car implements Vehicle {
+
+    public void start() {
+        System.out.println("Car starts with key");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Vehicle v = new Car();  // polymorphism
+        v.start();
+    }
+}
+
+4️⃣ Interface vs Abstract Class (MUST REMEMBER)
+Feature	Interface	Abstract Class
+Methods	abstract (default)	abstract + concrete
+Variables	public static final	any
+Multiple inheritance	✅ Yes	❌ No
+Constructor	❌ No	✅ Yes
+Object creation	❌ No	❌ No
+5️⃣ Variables in Interface (TRICKY)
+interface Bank {
+    int RATE = 10;
+}
+
+
+Equivalent to:
+
+public static final int RATE = 10;
+
+
+❌ Cannot change value
+❌ No instance variables
+
+6️⃣ Multiple Inheritance Using Interface (VERY IMPORTANT)
+interface Camera {
+    void takePhoto();
+}
+
+interface Music {
+    void playMusic();
+}
+
+class Smartphone implements Camera, Music {
+
+    public void takePhoto() {
+        System.out.println("Taking photo");
+    }
+
+    public void playMusic() {
+        System.out.println("Playing music");
+    }
+}
+
+
+✔ This is REAL multiple inheritance
+
+7️⃣ Java 8 Feature: default method ⭐
+interface Payment {
+    default void pay() {
+        System.out.println("Default payment method");
+    }
+}
+
+class UPI implements Payment {}
+
+
+✔ Child class not forced to override
+
+8️⃣ Java 8 Feature: static method
+interface Bank {
+    static void info() {
+        System.out.println("Bank information");
+    }
+}
+
+Bank.info(); // called using interface name
+
+9️⃣ Diamond Problem (VERY IMPORTANT INTERVIEW)
+interface A {
+    default void show() {
+        System.out.println("A");
+    }
+}
+
+interface B {
+    default void show() {
+        System.out.println("B");
+    }
+}
+
+
+❌ ERROR:
+
+class C implements A, B {}
+
+
+✅ SOLUTION:
+
+class C implements A, B {
+    public void show() {
+        A.super.show();
+    }
+}
+
+🔥 MOST ASKED INTERVIEW QUESTIONS
+❓ Interface vs Abstract class?
+
+→ Use interface when multiple inheritance is required
+
+❓ Can interface have constructor?
+
+→ ❌ No
+
+❓ Can interface have variables?
+
+→ ✅ Yes, but public static final
+
+❓ Why interface variables are final?
+
+→ To maintain constant behavior
