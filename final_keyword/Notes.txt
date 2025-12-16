@@ -1,0 +1,113 @@
+🔥 final KEYWORD IN JAVA (FROM ZERO → INTERVIEW TRAPS)
+
+The final keyword is used to RESTRICT something.
+
+It can be applied to:
+1️⃣ Variable
+2️⃣ Method
+3️⃣ Class
+
+1️⃣ final VARIABLE
+🔹 Meaning:
+
+Once assigned, value cannot be changed
+
+Example:
+class Test {
+    final int x = 10;
+
+    void show() {
+        // x = 20;  ❌ ERROR
+        System.out.println(x);
+    }
+}
+
+🔹 final with reference variables
+final int[] arr = {1, 2, 3};
+arr[0] = 100;   // ✅ allowed
+// arr = new int[]{4,5}; ❌ NOT allowed
+
+
+📌 Value inside object can change, reference cannot
+
+2️⃣ final METHOD
+🔹 Meaning:
+
+Method cannot be overridden
+
+Example:
+class Parent {
+    final void show() {
+        System.out.println("Parent show");
+    }
+}
+
+class Child extends Parent {
+    // void show() {} ❌ ERROR
+}
+
+
+📌 Used for security & performance
+
+3️⃣ final CLASS
+🔹 Meaning:
+
+Class cannot be inherited
+
+Example:
+final class Vehicle {
+    void run() {
+        System.out.println("Running");
+    }
+}
+
+// class Car extends Vehicle {} ❌ ERROR
+
+
+📌 Example: String, Math, Integer
+
+4️⃣ VERY IMPORTANT INTERVIEW TABLE
+
+Usage	            Can change?	    Can inherit?	Can override?
+final variable	       ❌ No            	—	            —
+final method	        —	            ✅ Yes	      ❌ No
+final class         	—	            ❌ No	      ❌ No
+
+5️⃣ COMMON INTERVIEW TRAPS ⚠️
+
+❓ Can constructor be final?
+👉 ❌ NO
+Because constructors are not inherited
+
+❓ Can abstract method be final?
+👉 ❌ NO
+Abstract → must override
+Final → cannot override
+❌ Contradiction
+
+❓ Can we overload final methods?
+👉 ✅ YES
+Overloading ≠ overriding
+
+6️⃣ REAL-WORLD EXAMPLE (BEST ANSWER)
+
+Like a PAN number or Aadhaar number → once assigned, cannot change → final
+
+🧪 PRACTICE TASK (IMPORTANT)
+/* Create a final class Bank
+   with final variable IFSC_CODE
+   and final method displayIFSC()
+   Try inheriting it and observe error */
+
+🧠 One-Line Interview Answers (VERY IMPORTANT)
+❓ Why make a class final?
+
+To prevent inheritance for security or design reasons.
+
+❓ Why String class is final?
+
+To avoid modification of immutable data and ensure security.
+
+❓ Can final method be overloaded?
+
+✅ Yes, because overloading is compile-time.

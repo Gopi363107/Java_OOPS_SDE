@@ -1,0 +1,141 @@
+🔥 PRIMITIVE DATA TYPES vs WRAPPER / REFERENCE TYPES (JAVA)
+1️⃣ PRIMITIVE DATA TYPES
+Definition:
+
+Primitive types store actual values directly in memory.
+
+They are NOT objects.
+
+✅ 8 Primitive Data Types in Java
+Type	Size	Example
+byte	1 byte	byte b = 10;
+short	2 bytes	short s = 100;
+int	4 bytes	int x = 10;
+long	8 bytes	long l = 100L;
+float	4 bytes	float f = 10.5f;
+double	8 bytes	double d = 10.5;
+char	2 bytes	char c = 'A';
+boolean	JVM dependent	boolean flag = true;
+❌ What primitives CANNOT do
+int x = 10;
+
+x instanceof Integer;  // ❌ COMPILATION ERROR
+
+
+Why?
+
+instanceof works only with objects
+
+Primitives are not objects
+
+2️⃣ WRAPPER CLASSES (REFERENCE TYPES)
+Definition:
+
+Wrapper classes are object representations of primitive types.
+
+Each primitive has a wrapper.
+
+🔁 Primitive → Wrapper Mapping
+Primitive	Wrapper Class
+byte	Byte
+short	Short
+int	Integer
+long	Long
+float	Float
+double	Double
+char	Character
+boolean	Boolean
+Example
+Integer x = 10; // autoboxing
+
+
+✔ x is an object
+✔ Stored in heap
+✔ Can use instanceof
+
+System.out.println(x instanceof Integer); // true
+
+3️⃣ STRING — IMPORTANT CONFUSION POINT ⚠️
+❗ String is NOT a primitive
+String s = "Java";
+
+
+✔ String is a class
+✔ Stored as object
+✔ Immutable
+✔ Can use instanceof
+
+System.out.println(s instanceof String); // true
+
+4️⃣ AUTOBOXING & UNBOXING (INTERVIEW FAVORITE)
+Autoboxing
+Integer x = 10; // int → Integer
+
+Unboxing
+int y = x; // Integer → int
+
+5️⃣ MEMORY DIFFERENCE (VERY IMPORTANT)
+Primitive
+int a = 10;
+
+
+Stored in stack
+
+Faster
+
+Less memory
+
+Wrapper/Object
+Integer b = 10;
+
+
+Object stored in heap
+
+Reference in stack
+
+More memory
+
+6️⃣ COMPARISON TRAP ⚠️ (INTERVIEW CLASSIC)
+Integer a = 100;
+Integer b = 100;
+
+System.out.println(a == b); // true
+
+Integer x = 200;
+Integer y = 200;
+
+System.out.println(x == y); // false ❗
+
+
+Why?
+
+Integer caching range: -128 to 127
+
+Outside → new objects created
+
+✅ Always use:
+
+a.equals(b)
+
+7️⃣ WHEN TO USE WHAT?
+Use Case	Choose
+Simple calculation	Primitive
+Collections (ArrayList)	Wrapper
+Need null	Wrapper
+Performance critical	Primitive
+8️⃣ INTERVIEW ONE-LINERS (VERY IMPORTANT)
+❓ Why Java has wrapper classes?
+
+To allow primitives to be treated as objects.
+
+❓ Can primitives be stored in collections?
+
+❌ No (use wrappers)
+
+❓ Does instanceof work with primitives?
+
+❌ No
+
+❓ Is String a primitive?
+
+❌ No, it’s a class
