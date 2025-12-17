@@ -1,3 +1,4 @@
+package class_objects;
 import java.util.*;
 // Create a class Car with properties model, price, mileage and a method details().
 

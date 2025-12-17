@@ -1,4 +1,4 @@
-package oops_Basics;
+package class_objects;
 public class class_objects {
     public static void main(String[] args) {
         Laptop l1 = new Laptop();

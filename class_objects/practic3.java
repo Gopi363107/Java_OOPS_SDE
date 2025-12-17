@@ -1,3 +1,4 @@
+package class_objects;
 import java .util.*;
 
 //Create a class Employee with id, name and a method to print salary.
