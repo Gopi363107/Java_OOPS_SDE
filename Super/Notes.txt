@@ -1,0 +1,55 @@
+super is used to:
+
+1️⃣ Access parent variables
+2️⃣ Call parent methods
+3️⃣ Call parent constructor
+
+🔹 1. super with variables
+class Animal {
+    String color = "White";
+}
+
+class Dog extends Animal {
+    String color = "Black";
+
+    void printColor() {
+        System.out.println(color);        // Black
+        System.out.println(super.color);  // White
+    }
+}
+
+🔹 2. super with methods
+class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        super.sound(); // parent method
+        System.out.println("Dog barks");
+    }
+}
+
+🔹 3. super() constructor call (VERY IMPORTANT)
+class Animal {
+    Animal() {
+        System.out.println("Animal constructor");
+    }
+}
+
+class Dog extends Animal {
+    Dog() {
+        super(); // implicit if not written
+        System.out.println("Dog constructor");
+    }
+}
+
+Output:
+Animal constructor
+Dog constructor
+
+🔥 MNC GOLDEN RULE
+
+Parent constructor always executes first

@@ -1,0 +1,119 @@
+🔥 STATIC KEYWORD — COMPLETE (Interview Oriented)
+1️⃣ What is static? (One-line answer)
+
+static members belong to the class, not to the object.
+
+2️⃣ Static Variable
+Example
+class Student {
+    static String college = "IIT";
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+
+    void display() {
+        System.out.println(name + " - " + college);
+    }
+}
+
+Main
+public class Test {
+    public static void main(String[] args) {
+        Student s1 = new Student("Gopi");
+        Student s2 = new Student("Athi");
+
+        s1.display();
+        s2.display();
+    }
+}
+
+Output
+Gopi - IIT
+Athi - IIT
+
+🔑 Key Point
+
+Only one copy of static variable
+
+Shared by all objects
+
+3️⃣ Static Method
+Example
+class MathUtil {
+    static int add(int a, int b) {
+        return a + b;
+    }
+}
+
+Call
+System.out.println(MathUtil.add(5, 10));
+
+🔑 Rules
+
+Static method cannot access non-static variables
+
+Can be called using class name
+
+4️⃣ Static Block (VERY IMPORTANT)
+Example
+class Test {
+    static {
+        System.out.println("Static block");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Main method");
+    }
+}
+
+Output
+Static block
+Main method
+
+🔑 Rule
+
+Static block runs once, when class is loaded.
+
+5️⃣ Static vs Non-Static (INTERVIEW TABLE)
+Feature	Static	Non-Static
+Belongs to	Class	Object
+Access using	Class name	Object
+Memory	One copy	Per object
+Access instance vars	❌	✅
+6️⃣ MNC TRAP QUESTION 🔥
+class Demo {
+    static int x = 10;
+
+    static void show() {
+        System.out.println(x);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Demo d = null;
+        d.show();
+    }
+}
+
+❓ Output?
+✅ Answer
+10
+
+🔑 Reason
+
+Static methods are resolved at compile time
+
+Object reference is ignored
+
+7️⃣ Very Important Rule (Asked Often)
+
+❓ Can we override static methods?
+
+✅ Answer:
+
+❌ No
+
+Static methods are hidden, not overridden.
