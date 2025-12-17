@@ -1,0 +1,219 @@
+🔥 INHERITANCE IN JAVA (ZERO → MNC LEVEL)
+1️⃣ What is Inheritance?
+
+Inheritance = acquiring properties and behavior from another class
+
+Real-world example:
+
+Parent → Child
+
+Child gets:
+
+properties (variables)
+
+behaviors (methods)
+
+2️⃣ Syntax of Inheritance
+class Parent {
+    void show() {
+        System.out.println("Parent method");
+    }
+}
+
+class Child extends Parent {
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.show(); // inherited method
+    }
+}
+
+
+✔ extends keyword
+✔ Child can access parent public/protected members
+
+3️⃣ Types of Inheritance in Java ⭐⭐⭐
+✅ Supported Types
+1️⃣ Single Inheritance
+A → B
+
+class A {}
+class B extends A {}
+
+2️⃣ Multilevel Inheritance
+A → B → C
+
+class A {}
+class B extends A {}
+class C extends B {}
+
+3️⃣ Hierarchical Inheritance
+A → B
+A → C
+
+class A {}
+class B extends A {}
+class C extends A {}
+
+❌ NOT Supported (with classes)
+🚫 Multiple Inheritance
+class C extends A, B {} // ❌
+
+
+👉 Solved using interfaces
+
+4️⃣ Why Java Doesn’t Support Multiple Inheritance (IMPORTANT)
+Diamond Problem 💎
+   A
+  / \
+ B   C
+  \ /
+   D
+
+
+Which show() should D inherit? ❌ Ambiguity.
+
+👉 Java avoids this using interfaces
+
+5️⃣ IS-A Relationship (INTERVIEW FAVORITE)
+
+Inheritance represents IS-A relationship.
+
+Car IS-A Vehicle
+Dog IS-A Animal
+
+class Vehicle {}
+class Car extends Vehicle {}
+
+
+✔ This is valid inheritance
+
+6️⃣ Access Rules in Inheritance
+Modifier	Inherited?
+public	✅ Yes
+protected	✅ Yes
+default	⚠️ Same package only
+private	❌ No
+7️⃣ Constructor Behavior in Inheritance ⭐⭐⭐
+Important Rule:
+
+Parent constructor is executed first
+
+class Parent {
+    Parent() {
+        System.out.println("Parent constructor");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println("Child constructor");
+    }
+}
+
+Output:
+Parent constructor
+Child constructor
+
+
+📌 Even if you don’t call it explicitly, Java calls it internally.
+
+8️⃣ Method Overriding in Inheritance
+class Parent {
+    void show() {
+        System.out.println("Parent show");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    void show() {
+        System.out.println("Child show");
+    }
+}
+
+
+✔ Runtime polymorphism
+✔ Child method executes
+
+9️⃣ INTERVIEW TRAPS ⚠️
+❓ Can private methods be inherited?
+
+👉 ❌ No
+
+❓ Can constructor be inherited?
+
+👉 ❌ No
+
+❓ Can final method be overridden?
+
+👉 ❌ No
+
+🧪 ASSESSMENT — INHERITANCE
+🟢 EASY
+
+Q1: What is the output?
+
+class A {
+    void show() {
+        System.out.println("A");
+    }
+}
+class B extends A {}
+public class Test {
+    public static void main(String[] args) {
+        B obj = new B();
+        obj.show();
+    }
+}
+
+🟡 MEDIUM
+
+Q2: Predict output:
+
+class A {
+    A() {
+        System.out.println("A constructor");
+    }
+}
+class B extends A {
+    B() {
+        System.out.println("B constructor");
+    }
+}
+
+🔴 HARD (MNC LEVEL)
+
+Q3:
+Write code showing:
+
+Multilevel inheritance
+
+Method overriding
+
+Parent reference → Child object
+
+Ask yourself:
+
+Can I say “A ___ is a ___”?
+
+Statement	Valid?
+Dog is an Animal	✅
+Car is a Vehicle	✅
+Puppy is a Dog	✅
+Animal is a Dog	❌
+
+Common MNC Trick Question
+Animal a = new Dog();
+
+System.out.println(a instanceof Animal); // true
+System.out.println(a instanceof Dog);    // true
+
+
+Because:
+
+Reference → Animal
+
+Object → Dog
