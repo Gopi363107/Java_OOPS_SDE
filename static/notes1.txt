@@ -1,0 +1,141 @@
+First: What does static mean?
+
+👉 static means “belongs(property or member) to the class, not to objects.”
+
+Non-static → belongs to each object
+
+Static → shared by all objects of that class
+
+1️⃣ Static Variable (Class Variable)
+Normal variable (non-static)
+
+Each object gets its own copy.
+
+Static variable
+
+Only ONE copy, shared by all objects.
+
+Example
+class Student {
+    String name;          // instance variable
+    static String college; // static variable
+}
+
+Think like this:
+
+name → different for each student
+
+college → same for all students
+
+Usage
+Student.college = "ABC College";
+
+Student s1 = new Student();
+Student s2 = new Student();
+
+s1.name = "Rahul";
+s2.name = "Amit";
+
+
+➡️ Both students share the same college value
+
+Real-life example
+
+Bus company name → same for all buses (static)
+
+Bus number → different for each bus (non-static)
+
+2️⃣ Static Method
+What is it?
+
+A method that belongs to the class, not objects.
+
+Example
+class MathUtils {
+    static int add(int a, int b) {
+        return a + b;
+    }
+}
+
+Calling static method
+int sum = MathUtils.add(5, 3);
+
+
+✔️ No object needed
+
+Important Rules
+
+Static methods cannot use non-static variables directly
+
+Static methods cannot use this keyword
+
+Why?
+
+Because static method runs without creating any object
+
+3️⃣ Static Block
+What is it?
+
+A block of code that runs ONLY ONCE, when the class is loaded.
+
+Example
+class Test {
+    static {
+        System.out.println("Static block executed");
+    }
+}
+
+Output
+Static block executed
+
+When is it used?
+
+Database connection
+
+Loading drivers
+
+Initializing static variables
+
+Important:
+
+✔️ Runs before main()
+✔️ Runs only once
+
+4️⃣ Static Class (Important Concept)
+Can we have a static class?
+
+🚫 Top-level classes cannot be static
+
+✔️ Inner classes can be static
+
+Example
+class Outer {
+    static class Inner {
+        void show() {
+            System.out.println("Static inner class");
+        }
+    }
+}
+
+Why static inner class?
+
+Does not need Outer class object
+
+Used to group helper classes
+
+Usage
+Outer.Inner obj = new Outer.Inner();
+obj.show();
+
+Quick Summary Table
+
+Feature	            Static	        Non-Static
+
+Belongs to	        Class	        Object
+Memory	            One copy	    Multiple copies
+Access	            Class name	       Object
+Uses this	           ❌ No	         ✅ Yes
+
+One-Line Definition
+
+Static members are shared and belong to the class, not individual objects.

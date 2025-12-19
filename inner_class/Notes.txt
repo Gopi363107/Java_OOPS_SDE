@@ -1,0 +1,149 @@
+🔥 INNER CLASSES — COMPLETE (MNC LEVEL)
+1️⃣ Non-Static Inner Class
+
+Needs outer class object
+
+Can access all members of outer class (even private)
+
+2️⃣ Static Nested Class (VERY IMPORTANT)
+class Outer {
+    static int x = 20;
+
+    static class Inner {
+        void show() {
+            System.out.println(x);
+        }
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Outer.Inner i = new Outer.Inner();
+        i.show();
+    }
+}
+
+Output
+20
+
+🔑 Rules
+
+Does not need outer object
+
+Can access only static members of outer class
+
+3️⃣ Local Inner Class
+class Test {
+    void display() {
+        int x = 5;
+
+        class Local {
+            void show() {
+                System.out.println(x);
+            }
+        }
+
+        Local l = new Local();
+        l.show();
+    }
+
+    public static void main(String[] args) {
+        new Test().display();
+    }
+}
+
+Output
+5
+
+
+✔ Local variables must be effectively final
+
+4️⃣ Anonymous Inner Class (🔥 Very Common)
+abstract class Animal {
+    abstract void sound();
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Animal a = new Animal() {
+            void sound() {
+                System.out.println("Animal sound");
+            }
+        };
+        a.sound();
+    }
+}
+
+Output
+Animal sound
+
+
+✔ Used in threads, listeners, lambdas
+
+🎯 INTERVIEW ONE-LINERS (MEMORIZE)
+
+Inner class can access outer class private members
+
+Static nested class cannot access non-static members
+
+Anonymous inner class has no name
+
+Local inner class scope is inside method only
+
+🧪 PRACTICE (Answer only)
+Q1
+class A {
+    static int x = 10;
+
+    static class B {
+        void show() {
+            System.out.println(x);
+        }
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new A.B().show();
+    }
+}
+
+Q2
+class A {
+    int x = 5;
+
+    static class B {
+        void show() {
+            System.out.println(x);
+        }
+    }
+}
+
+
+👉 Will Q2 compile? Why?
+
+🧠 Key Concept (Very Important)
+For nested non-static inner classes, object creation works like this:
+Outer → Inner → InnerInsideInner
+
+So:
+outer o = new outer();
+outer.inner i = o.new inner();
+outer.inner.Inner v = i.new Inner();
+
+Each level needs an instance of its enclosing class.
+
+✅ Output
+the outer class addition 100
+the inner class addition 21
+
+If you want, I can also explain:
+
+
+how this changes with static inner classes
+
+
+or how to simplify this structure
+
+
+Just tell me 👍
