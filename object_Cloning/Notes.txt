@@ -1,0 +1,182 @@
+🔥 OBJECT CLONING (Shallow vs Deep) — FULL CLEAR
+
+This topic is commonly asked in MNC interviews and often misunderstood.
+
+1️⃣ What is Object Cloning?
+
+Object cloning means creating an exact copy of an object.
+Instead of creating a new object manually, Java provides clone().
+
+2️⃣ Requirements for Cloning (VERY IMPORTANT)
+✅ Two compulsory steps:
+
+Class must implement Cloneable interface
+Override clone() method from Object class
+If not → CloneNotSupportedException
+
+3️⃣ BASIC CLONING EXAMPLE (Shallow Clone)
+class Student implements Cloneable {
+    int id;
+    String name;
+
+    Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Student s1 = new Student(1, "Gopi");
+        Student s2 = (Student) s1.clone();
+
+        s2.name = "Athi";
+
+        System.out.println(s1.name);
+        System.out.println(s2.name);
+    }
+}
+
+🟢 Output
+Gopi
+Athi
+
+
+✔ Primitive & immutable fields are copied correctly
+
+4️⃣ SHALLOW CLONING (IMPORTANT)
+🟡 Definition
+
+Copies object references, not actual objects
+
+Example
+class Address {
+    String city;
+    Address(String city) {
+        this.city = city;
+    }
+}
+
+class Employee implements Cloneable {
+    int id;
+    Address address;
+
+    Employee(int id, Address address) {
+        this.id = id;
+        this.address = address;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Address a = new Address("Chennai");
+        Employee e1 = new Employee(1, a);
+        Employee e2 = (Employee) e1.clone();
+
+        e2.address.city = "Bangalore";
+
+        System.out.println(e1.address.city);
+        System.out.println(e2.address.city);
+    }
+}
+
+❌ Output
+Bangalore
+Bangalore
+
+
+❗ Both share the same Address object
+
+5️⃣ DEEP CLONING (MOST IMPORTANT)
+🟢 Definition
+
+Creates new copy of referenced objects also
+
+Example
+class Address implements Cloneable {
+    String city;
+
+    Address(String city) {
+        this.city = city;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+class Employee implements Cloneable {
+    int id;
+    Address address;
+
+    Employee(int id, Address address) {
+        this.id = id;
+        this.address = address;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        Employee emp = (Employee) super.clone();
+        emp.address = (Address) address.clone(); // deep copy
+        return emp;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        Address a = new Address("Chennai");
+        Employee e1 = new Employee(1, a);
+        Employee e2 = (Employee) e1.clone();
+
+        e2.address.city = "Bangalore";
+
+        System.out.println(e1.address.city);
+        System.out.println(e2.address.city);
+    }
+}
+
+✅ Output
+Chennai
+Bangalore
+
+
+✔ Completely independent objects
+
+🔥 INTERVIEW COMPARISON
+Feature	Shallow	Deep
+Primitive copy	✅	✅
+Object reference copy	❌ (shared)	✅ (new)
+Safe for mutable objects	❌	✅
+Performance	Fast	Slower
+🎯 INTERVIEW ONE-LINERS (MEMORIZE)
+
+clone() is protected in Object class
+
+Cloneable is a marker interface
+
+Shallow copy shares references
+
+Deep copy duplicates referenced objects
+
+🧪 PRACTICE QUESTION (Answer Only)
+class Test implements Cloneable {
+    int x = 10;
+
+    public static void main(String[] args) throws Exception {
+        Test t1 = new Test();
+        Test t2 = (Test) t1.clone();
+
+        t2.x = 20;
+        System.out.println(t1.x);
+    }
+}
+
+
+👉 Output?
