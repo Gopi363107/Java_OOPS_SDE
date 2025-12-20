@@ -1,0 +1,244 @@
+🔥 GENERICS IN JAVA (ZERO → ADVANCED)
+
+🔥 FINAL GENERICS GOLD RULES (MEMORIZE)
+
+extends → read only
+super → write allowed
+Generics are invariant
+No primitives in generics
+
+Type erasure at compile time
+1️⃣ Why Generics? (MOST IMPORTANT)
+❌ Problem without Generics
+
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        List list = new ArrayList();
+        list.add(10);
+        list.add("Gopi");
+
+        int x = (int) list.get(1); // Runtime error
+    }
+}
+
+❌ Runtime Error
+ClassCastException
+
+
+👉 Problem:
+
+No type safety
+
+Errors detected at runtime, not compile time
+
+2️⃣ What are Generics?
+
+Generics allow us to define type-safe classes, methods, and collections.
+
+✔ Errors caught at compile time
+✔ No type casting
+✔ Cleaner & safer code
+
+3️⃣ Generics with Collections (BASIC)
+✅ Using Generics
+import java.util.*;
+
+public class Test {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(10);
+        list.add(20);
+        // list.add("Gopi"); ❌ compile-time error
+
+        for (int x : list) {
+            System.out.println(x);
+        }
+    }
+}
+
+🔑 Benefits
+
+Type safety
+
+No casting
+
+Faster debugging
+
+4️⃣ Generic Class
+Example
+class Box<T> {
+    T value;
+
+    void set(T value) {
+        this.value = value;
+    }
+
+    T get() {
+        return value;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Box<Integer> b1 = new Box<>();
+        b1.set(10);
+
+        Box<String> b2 = new Box<>();
+        b2.set("Gopi");
+
+        System.out.println(b1.get());
+        System.out.println(b2.get());
+    }
+}
+
+🔑 Key Points
+
+T → Type parameter
+
+Same class works for multiple types
+
+5️⃣ Generic Method
+class Test {
+    static <T> void print(T data) {
+        System.out.println(data);
+    }
+
+    public static void main(String[] args) {
+        print(10);
+        print("Hello");
+        print(5.5);
+    }
+}
+
+
+✔ Method works for any data type
+
+6️⃣ Multiple Type Parameters
+class Pair<K, V> {
+    K key;
+    V value;
+
+    Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    void show() {
+        System.out.println(key + " : " + value);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Pair<Integer, String> p = new Pair<>(1, "Gopi");
+        p.show();
+    }
+}
+
+7️⃣ BOUNDED GENERICS (VERY IMPORTANT)
+🔹 Upper Bound (extends)
+class Test<T extends Number> {
+    T num;
+
+    Test(T num) {
+        this.num = num;
+    }
+
+    void show() {
+        System.out.println(num);
+    }
+}
+
+
+✔ Allows Integer, Double, Float
+❌ Does NOT allow String
+
+🔹 Lower Bound (super)
+import java.util.*;
+
+public class Test {
+    static void addNumbers(List<? super Integer> list) {
+        list.add(10);
+        list.add(20);
+    }
+
+    public static void main(String[] args) {
+        List<Number> list = new ArrayList<>();
+        addNumbers(list);
+        System.out.println(list);
+    }
+}
+
+
+✔ Used when adding values
+
+8️⃣ Wildcards (?)
+Symbol	Meaning
+<?>	Any type
+<? extends T>	Read-only
+<? super T>	Write-only
+Example
+static void show(List<?> list) {
+    for (Object o : list) {
+        System.out.println(o);
+    }
+}
+
+9️⃣ PECS Rule (INTERVIEW FAVORITE)
+
+PECS = Producer Extends, Consumer Super
+
+Scenario	Use
+Reading values	extends
+Writing values	super
+🔥 MNC INTERVIEW TRAPS
+❓ Can we use primitives in generics?
+
+❌ No
+✔ Use wrapper classes (Integer, Double)
+
+❓ Are generics available at runtime?
+
+❌ No
+✔ Type erasure happens at compile time
+
+❓ Can we create object of type parameter?
+
+❌ No
+
+T obj = new T(); // error
+
+🔚 GENERICS SUMMARY (MEMORIZE)
+
+Introduced in Java 5
+
+Provides compile-time type safety
+
+Removes ClassCastException
+
+Uses type erasure
+
+Works only with reference types
+
+🧪 PRACTICE QUESTIONS (EASY → HARD)
+Q1 (Easy)
+List<String> list = new ArrayList<>();
+list.add("Java");
+list.add(10);
+
+
+❓ Compile or error?
+
+Q2 (Medium)
+List<? extends Number> list = new ArrayList<Integer>();
+list.add(10);
+
+
+❓ Compile or error? Why?
+
+Q3 (Hard – Interview)
+
+Why List<Object> is not same as List<String>?
+
+Reply with:
