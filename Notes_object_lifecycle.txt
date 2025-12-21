@@ -1,0 +1,192 @@
+🔵 OBJECT LIFECYCLE IN JAVA (COMPLETE)
+
+Think of an object’s life like a human life 👶 → 🧑 → 🪦
+
+1️⃣ Class Loading (Before Object Exists)
+
+Before any object is created:
+
+JVM loads the class
+
+Static members are loaded once
+
+class Test {
+    static int x = 10;
+}
+
+
+📌 Happens only once, no matter how many objects you create.
+
+2️⃣ Object Creation (Birth of Object) 👶
+How object is created?
+
+Using new keyword
+
+Student s = new Student();
+
+
+What happens internally:
+
+Memory allocated in Heap
+
+Default values assigned
+
+Constructor executed
+
+Reference stored in Stack
+
+3️⃣ Memory Allocation (VERY IMPORTANT FOR INTERVIEWS)
+🧠 Memory Areas Involved
+Part	Stores
+Stack	Reference (s)
+Heap	Actual Object
+Method Area	Class, static data
+Example:
+Student s = new Student();
+
+Stack        Heap
+------       ------
+s  ----->   Student object
+
+
+📌 Objects always live in HEAP
+
+4️⃣ Initialization
+Default Initialization
+int x;        // 0
+String name; // null
+
+Constructor Initialization
+Student(String name) {
+    this.name = name;
+}
+
+
+Constructor sets real values.
+
+5️⃣ Object Usage (Alive State) 🧑
+
+Object is alive as long as:
+
+It has at least one reference
+
+Student s1 = new Student();
+Student s2 = s1;   // two references
+
+
+📌 Object is NOT destroyed if any reference exists
+
+6️⃣ Reference Removal (Becoming Eligible for GC) ⚠️
+
+Object becomes eligible for Garbage Collection when:
+
+Case 1: Reference set to null
+s = null;
+
+Case 2: Reassigned reference
+s = new Student();
+
+Case 3: Method local object
+void create() {
+    Student s = new Student();
+} // s goes out of scope
+
+
+📌 Eligible ≠ Collected immediately
+
+7️⃣ Garbage Collection (Death) 🪦
+
+JVM automatically destroys objects
+
+Programmer cannot force GC
+
+System.gc(); // only request, not guarantee
+
+Garbage Collector:
+
+Runs in background
+
+Removes unused objects
+
+Frees Heap memory
+
+8️⃣ finalize() Method (OLD – Interview Concept)
+protected void finalize() {
+    System.out.println("Object destroyed");
+}
+
+
+📌 Called before GC
+📌 Not reliable
+📌 Deprecated in Java 9+
+
+👉 Never use in real projects
+
+9️⃣ Modern Object Cleanup (BEST PRACTICE) ✅
+
+Instead of finalize():
+
+Use try-with-resources
+
+Close resources manually
+
+try (FileInputStream fis = new FileInputStream("a.txt")) {
+}
+
+🔴 OBJECT LIFECYCLE SUMMARY (INTERVIEW READY)
+Stage	Description
+Class Loading	JVM loads class
+Object Creation	new keyword
+Memory Allocation	Heap
+Initialization	Constructor
+Usage	Object in use
+Eligible for GC	No references
+Garbage Collection	JVM cleans
+Finalize	Deprecated
+🧠 MOST ASKED INTERVIEW QUESTIONS
+❓ Can we destroy object manually?
+
+❌ No
+
+❓ Where are objects stored?
+
+✅ Heap
+
+❓ When is object eligible for GC?
+
+✅ When no references exist
+
+❓ Does System.gc() guarantee GC?
+
+❌ No
+
+📝 PRACTICE QUESTION (VERY IMPORTANT)
+Q1:
+Student s1 = new Student();
+Student s2 = s1;
+s1 = null;
+
+
+👉 Is object eligible for GC?
+(A) Yes
+(B) No
+
+Q2:
+new Student();
+
+
+👉 Eligible for GC? (Yes / No)
+
+Q3:
+void test() {
+    Student s = new Student();
+}
+
+
+👉 When does object become eligible?
+
+Reply with your answers like:
+
+Q1:
+Q2:
+Q3:
