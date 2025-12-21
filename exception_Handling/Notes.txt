@@ -1,0 +1,207 @@
+🔥 EXCEPTION HANDLING IN JAVA (ZERO → ADVANCED)
+1️⃣ What is an Exception?
+
+An exception is an abnormal event that disrupts the normal flow of a program.
+
+Example:
+
+Divide by zero
+Array index out of bounds
+Null pointer access
+
+2️⃣ Why Exception Handling?
+
+❌ Without handling → program crashes
+✅ With handling → program continues safely
+
+3️⃣ Exception Hierarchy (IMPORTANT)
+Object
+ └── Throwable
+      ├── Error (Out of programmer control)
+      └── Exception
+           ├── Checked Exceptions
+           └── Unchecked Exceptions
+
+4️⃣ Checked vs Unchecked Exceptions
+Feature	Checked	Unchecked
+Checked at	Compile time	Runtime
+Must handle	✅ Yes	❌ No
+Examples	IOException, SQLException	ArithmeticException, NullPointerException
+
+5️⃣ try – catch (BASIC)
+public class Test {
+    public static void main(String[] args) {
+        try {
+            int a = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero");
+        }
+        System.out.println("Program continues");
+    }
+}
+
+Output
+Cannot divide by zero
+Program continues
+
+6️⃣ Multiple catch blocks
+try {
+    int[] arr = new int[5];
+    System.out.println(arr[10]);
+} catch (ArithmeticException e) {
+    System.out.println("Arithmetic error");
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Array error");
+}
+
+
+✔ Most specific exception first
+❌ Parent first → compile error
+
+7️⃣ finally block (VERY IMPORTANT)
+try {
+    int x = 10 / 2;
+} catch (Exception e) {
+    System.out.println("Error");
+} finally {
+    System.out.println("Always executes");
+}
+
+
+✔ finally runs always
+✔ Used for resource cleanup
+
+8️⃣ throw keyword
+
+Used to explicitly throw an exception
+
+class Test {
+    static void validate(int age) {
+        if (age < 18) {
+            throw new ArithmeticException("Not eligible");
+        }
+        System.out.println("Eligible");
+    }
+
+    public static void main(String[] args) {
+        validate(16);
+    }
+}
+
+9️⃣ throws keyword
+
+Used to declare exception
+
+class Test {
+    static void readFile() throws Exception {
+        throw new Exception("File not found");
+    }
+
+    public static void main(String[] args) throws Exception {
+        readFile();
+    }
+}
+
+🔥 throw vs throws (INTERVIEW FAVORITE)
+throw	throws
+Used inside method	Used in method signature
+Throws single exception	Can declare multiple
+Creates exception	Delegates exception
+🔟 Custom Exception (VERY IMPORTANT)
+class InvalidAgeException extends Exception {
+    InvalidAgeException(String msg) {
+        super(msg);
+    }
+}
+
+class Test {
+    static void checkAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be >= 18");
+        }
+        System.out.println("Allowed");
+    }
+
+    public static void main(String[] args) {
+        try {
+            checkAge(15);
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+1️⃣1️⃣ try-with-resources (ADVANCED)
+import java.io.*;
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+        try (FileReader fr = new FileReader("test.txt")) {
+            System.out.println("Reading file");
+        }
+    }
+}
+
+
+✔ Automatically closes resources
+✔ Resource must implement AutoCloseable
+
+🔥 MNC INTERVIEW TRAPS
+❓ Can we have try without catch?
+
+✔ Yes (with finally)
+
+❓ Can finally be skipped?
+
+✔ Only if JVM crashes (System.exit())
+
+❓ Can we catch Error?
+
+✔ Yes (not recommended)
+
+🔚 SUMMARY (MEMORIZE)
+
+Checked → must handle
+
+Unchecked → runtime
+
+finally always executes
+
+throw → explicit
+
+throws → declaration
+
+Custom exceptions for business logic
+
+🧪 PRACTICE QUESTIONS (Answer Only)
+Q1
+try {
+    System.out.println(10 / 0);
+} finally {
+    System.out.println("Done");
+}
+
+
+❓ Output?
+
+Q2
+try {
+    throw new Exception();
+} catch (RuntimeException e) {
+    System.out.println("Runtime");
+} catch (Exception e) {
+    System.out.println("Exception");
+}
+
+
+❓ Output?
+
+Q3
+try {
+    return;
+} finally {
+    System.out.println("Finally");
+}
+
+
+❓ Output?
