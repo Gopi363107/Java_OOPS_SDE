@@ -1,0 +1,181 @@
+📂 FILE HANDLING IN JAVA (Complete Guide)
+1️⃣ What is File Handling?
+
+File handling allows Java programs to:
+
+Create
+
+Read
+
+Write
+
+Update
+
+Delete files
+
+📌 Used for:
+
+Logs
+
+Reports
+
+User data
+
+Configuration files
+
+2️⃣ Important Packages
+java.io      // Traditional (File, FileReader, BufferedReader)
+java.nio     // New I/O (Path, Files) – faster
+
+3️⃣ File Class (Foundation)
+Create File Object
+File f = new File("data.txt");
+
+Important Methods
+Method	Purpose
+exists()	Check file
+createNewFile()	Create file
+delete()	Delete file
+getName()	File name
+getAbsolutePath()	Full path
+length()	Size
+Example
+import java.io.File;
+
+public class FileDemo {
+    public static void main(String[] args) throws Exception {
+        File f = new File("test.txt");
+
+        if (f.createNewFile()) {
+            System.out.println("File created");
+        } else {
+            System.out.println("Already exists");
+        }
+    }
+}
+
+4️⃣ Writing Data to File
+FileWriter (Character-based)
+import java.io.FileWriter;
+
+public class WriteFile {
+    public static void main(String[] args) throws Exception {
+        FileWriter fw = new FileWriter("data.txt");
+        fw.write("Hello Java File Handling");
+        fw.close();
+    }
+}
+
+
+⚠️ Always close the file (important interview point)
+
+5️⃣ Reading Data from File
+FileReader
+import java.io.FileReader;
+
+public class ReadFile {
+    public static void main(String[] args) throws Exception {
+        FileReader fr = new FileReader("data.txt");
+        int ch;
+        while ((ch = fr.read()) != -1) {
+            System.out.print((char) ch);
+        }
+        fr.close();
+    }
+}
+
+6️⃣ BufferedReader (Most Used in MNCs)
+
+✔ Faster
+✔ Line-by-line reading
+
+import java.io.*;
+
+public class BufferedRead {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("data.txt"));
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+        br.close();
+    }
+}
+
+7️⃣ Try-With-Resources (ADVANCED & IMPORTANT)
+try (FileReader fr = new FileReader("data.txt")) {
+    int ch;
+    while ((ch = fr.read()) != -1) {
+        System.out.print((char) ch);
+    }
+}
+
+
+✅ Automatically closes file
+✅ Cleaner
+✅ Preferred in interviews
+
+8️⃣ Byte Stream (Binary Files)
+
+Used for:
+
+Images
+
+Audio
+
+Video
+
+FileInputStream fis = new FileInputStream("img.jpg");
+FileOutputStream fos = new FileOutputStream("copy.jpg");
+
+9️⃣ java.nio (Modern File Handling)
+import java.nio.file.*;
+
+public class NioDemo {
+    public static void main(String[] args) throws Exception {
+        Path path = Paths.get("data.txt");
+        Files.write(path, "Hello NIO".getBytes());
+        System.out.println(Files.readAllLines(path));
+    }
+}
+
+
+✔ Faster
+✔ Less code
+✔ Used in real projects
+
+🔥 COMMON INTERVIEW QUESTIONS
+Q1: Difference between FileReader and BufferedReader?
+FileReader	BufferedReader
+Reads char by char	Reads line by line
+Slow	Fast
+Low performance	High performance
+Q2: What happens if file not closed?
+
+❌ Memory leak
+❌ File lock issue
+❌ Resource wastage
+
+Q3: Checked or Unchecked?
+Exception	Type
+IOException	Checked
+🧪 PRACTICE TASK (DO THIS)
+Task 1 (Easy)
+
+Create file
+
+Write your name
+
+Read and print
+
+Task 2 (Medium)
+
+Read file line by line
+
+Count number of lines
+
+Task 3 (Hard)
+
+Copy one file content to another
+
+Use try-with-resources
