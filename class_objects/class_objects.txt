@@ -1,0 +1,183 @@
+Java OOP: Classes & Objects – Interview Notes
+1️⃣ Class
+
+Definition: A blueprint/template for creating objects.
+It defines attributes (state) and behaviors (methods).
+
+Syntax:
+
+class ClassName {
+    // Attributes (fields)
+    int age;
+    String name;
+
+    // Behavior (methods)
+    void showDetails() {
+        System.out.println(name + " " + age);
+    }
+}
+
+
+Key points:
+
+Class does not occupy memory until an object is created.
+
+Can contain:
+
+Fields / properties / attributes → store state
+
+Methods / behaviors → define actions
+
+Constructors → initialize objects
+
+Blocks → static, instance initialization blocks
+
+Nested classes → inner, static inner
+
+Interview tips:
+
+Know difference between class and interface vs abstract class.
+
+Be ready to discuss class memory allocation: static area (static fields), heap (objects).
+
+2️⃣ Object (Instance)
+
+Definition: A real entity created from a class, occupying memory in heap.
+
+Syntax:
+
+ClassName obj = new ClassName(); // creates object
+
+
+Example:
+
+Bank sbi = new SBI(); // Bank = reference, SBI = instance/object
+
+
+Key points:
+
+Each object has its own copy of instance variables.
+
+Methods can be called on objects.
+
+Objects are stored in heap memory, reference is stored in stack.
+
+Interview tips:
+
+Know difference between reference variable vs object.
+
+Understand runtime polymorphism using parent reference pointing to child object.
+
+3️⃣ Constructor
+
+Definition: Special method to initialize objects.
+
+Rules:
+
+Name = class name
+
+No return type (not even void)
+
+Can be default (no-arg) or parameterized
+
+Example:
+
+class Bank {
+    String name;
+    Bank(String name) { // parameterized constructor
+        this.name = name;
+    }
+}
+
+
+Interview tips:
+
+Difference between constructor vs method
+
+Constructor overloading
+
+Default constructor is added only if no constructor is defined
+
+4️⃣ Object Creation
+ClassName obj = new ClassName(); // normal
+ClassName obj = new ClassName(args); // parameterized
+
+
+Reference variable type determines accessible methods
+
+Object type determines method implementation at runtime (polymorphism)
+
+Memory Diagram for Bank bank = new SBI();
+
+Stack: bank (reference variable)
+Heap: SBI object (actual instance)
+
+5️⃣ Key OOP Concepts Related to Classes/Objects
+Concept	Description
+Encapsulation	Hide internal state, access via getters/setters
+Inheritance	Child class reuses parent properties/methods
+Polymorphism	Same reference type → different behavior (method overriding)
+Abstraction	Abstract class/interface → only method signature, implementation in child
+Method Overloading	Same method name, different parameters (compile-time)
+Method Overriding	Child class provides its own implementation (runtime)
+6️⃣ Memory & Reference Notes
+
+Stack memory: stores references (local variables)
+
+Heap memory: stores objects/instances
+
+Static members: stored in method area, shared across all instances
+
+Garbage collection: objects no longer referenced are removed automatically
+
+7️⃣ Meta-level Interview Tips
+
+Always relate class and object to real-life analogy:
+
+Class = blueprint (e.g., Car class)
+
+Object = actual car (Honda Civic)
+
+Know difference between reference type and object type.
+
+Be ready for polymorphism questions:
+
+Bank bank = new SBI();
+
+Which method will be called? (Answer: runtime method of SBI)
+
+Know how many objects created in statements like:
+
+Bank b1 = new SBI();
+Bank b2 = new SBI();
+
+
+Know difference between shallow copy vs deep copy when cloning objects.
+
+Prepare memory layout diagrams (stack, heap, method area) – often asked.
+
+8️⃣ Common Interview Questions
+
+Difference between class and object?
+
+How is object created in Java?
+
+Difference between constructor vs method?
+
+Explain reference variable vs object.
+
+Difference between static vs instance variables?
+
+Explain runtime polymorphism with an example.
+
+Can a class have multiple objects? What happens to memory?
+
+What is garbage collection in Java?
+
+✅ Meta-summary for interviews:
+
+Class = blueprint, object = real entity.
+Reference type decides accessible methods (compile-time).
+Object type decides overridden method execution (runtime).
+Constructors initialize objects, memory is managed in heap, references in stack.
+Everything revolves around polymorphism + encapsulation + inheritance.
